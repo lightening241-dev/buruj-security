@@ -16,8 +16,8 @@
     :root {
       --navy:       #0D1B36;
       --navy-mid:   #1A2E54;
-      --gold:       #C9A84C;
-      --gold-light: #DDB85A;
+      --gold:       #A8BCCC;
+      --gold-light: #BDD0DC;
       --white:      #FFFFFF;
       --off-white:  #F5F7FA;
       --border:     #DDE2EC;
@@ -93,8 +93,8 @@
     .hero-glow {
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 60% 70% at 75% 50%, rgba(201,168,76,0.09) 0%, transparent 65%),
-        radial-gradient(ellipse 40% 50% at 15% 80%, rgba(201,168,76,0.05) 0%, transparent 55%);
+        radial-gradient(ellipse 60% 70% at 75% 50%, rgba(168,188,204,0.09) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 50% at 15% 80%, rgba(168,188,204,0.05) 0%, transparent 55%);
     }
     .hero-grid {
       position: absolute; inset: 0;
@@ -127,7 +127,7 @@
       color: #fff; text-transform: uppercase; letter-spacing: 0.02em;
       margin-bottom: 1.6rem;
     }
-    .hero h1 .gold { color: var(--gold); }
+    .hero h1 .gold { color: var(--gold); opacity: 0.9; }
     .hero-sub {
       font-size: 1.05rem; color: rgba(255,255,255,0.62);
       max-width: 500px; margin-bottom: 2.5rem; line-height: 1.75;
@@ -144,7 +144,7 @@
     }
     .btn-gold:hover {
       background: var(--gold-light); transform: translateY(-2px);
-      box-shadow: 0 10px 28px rgba(201,168,76,0.32);
+      box-shadow: 0 10px 28px rgba(168,188,204,0.32);
     }
     .btn-ghost {
       display: inline-flex; align-items: center; gap: 8px;
@@ -233,7 +233,7 @@
     .why-item { display: flex; gap: 1rem; align-items: flex-start; }
     .why-icon {
       width: 38px; height: 38px; flex-shrink: 0; border-radius: 50%;
-      background: rgba(201,168,76,0.13); border: 1px solid rgba(201,168,76,0.28);
+      background: rgba(168,188,204,0.13); border: 1px solid rgba(168,188,204,0.28);
       display: flex; align-items: center; justify-content: center;
     }
     .why-icon svg { width: 16px; height: 16px; color: var(--gold); }
@@ -269,7 +269,7 @@
       transition: border-color 0.2s, background 0.2s, transform 0.2s;
     }
     .ind-pill:hover {
-      border-color: var(--gold); background: rgba(201,168,76,0.05); transform: translateY(-3px);
+      border-color: var(--gold); background: rgba(168,188,204,0.05); transform: translateY(-3px);
     }
     .ind-pill svg { width: 26px; height: 26px; color: var(--navy); }
     .ind-pill span { font-size: 0.76rem; font-weight: 600; color: var(--muted); }
@@ -286,7 +286,7 @@
       position: absolute; bottom: -1.5rem; right: 0;
       background: var(--gold); color: var(--navy);
       padding: 1rem 1.4rem; border-radius: 8px; text-align: center;
-      box-shadow: 0 8px 24px rgba(201,168,76,0.3);
+      box-shadow: 0 8px 24px rgba(168,188,204,0.3);
     }
     .est-badge .year {
       font-family: 'Barlow Condensed', sans-serif;
@@ -400,18 +400,37 @@
 </head>
 <body>
 
+<!-- Global gradient defs for logo stars -->
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
+  <defs>
+    <linearGradient id="sg-a" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EAEFF4"/>
+      <stop offset="40%" stop-color="#BDD0DC"/>
+      <stop offset="100%" stop-color="#7A96AE"/>
+    </linearGradient>
+    <linearGradient id="sg-b" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#D4E0EA"/>
+      <stop offset="50%" stop-color="#A0B8CC"/>
+      <stop offset="100%" stop-color="#6888A4"/>
+    </linearGradient>
+  </defs>
+</svg>
+
 <!-- ── NAVBAR ──────────────────────────────────────────── -->
 <nav class="navbar" id="navbar">
   <a href="#home" class="nav-logo">
-    <svg class="nav-logo-svg" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="8"  y="2" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="3.5" fill="none"/>
-      <rect x="30" y="2" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="3.5" fill="none"/>
-      <rect x="54" y="2" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="3.5" fill="none"/>
-      <rect x="76" y="2" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="3.5" fill="none"/>
-      <path d="M8 18 L92 18 L92 78 L50 115 L8 78 Z" stroke="currentColor" stroke-width="3.5" fill="none"/>
-      <path d="M50 36 L64 72 L50 60 L36 72 Z" stroke="currentColor" stroke-width="3" fill="none"/>
-      <path d="M29 42 L32 34 L35 42 L43 45 L35 48 L32 56 L29 48 L21 45 Z" fill="currentColor" opacity="0.75"/>
-      <path d="M65 42 L68 34 L71 42 L79 45 L71 48 L68 56 L65 48 L57 45 Z" fill="currentColor" opacity="0.75"/>
+    <svg class="nav-logo-svg" viewBox="0 0 200 215" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer shield with battlements -->
+      <path d="M100 212 L158 178 L175 120 L158 82 L158 56 L140 56 L140 82 L128 82 L128 36 L114 36 L114 56 L106 56 L106 18 L94 18 L94 56 L86 56 L86 36 L72 36 L72 82 L60 82 L60 56 L42 56 L42 82 L25 120 L42 178 Z" stroke="currentColor" stroke-width="7" stroke-linejoin="miter" fill="white" fill-opacity="0.08"/>
+      <!-- Upward chevron -->
+      <path d="M100 100 L40 162 L40 174 L100 115 L160 174 L160 162 Z" fill="currentColor"/>
+      <rect x="93" y="115" width="14" height="70" fill="currentColor"/>
+      <!-- Large star -->
+      <path d="M100 83 L103 93 L113 96 L103 99 L100 109 L97 99 L87 96 L97 93 Z" fill="#BDD0DC"/>
+      <!-- 3 small stars -->
+      <path d="M71 109 L73 116 L80 118 L73 120 L71 127 L69 120 L62 118 L69 116 Z" fill="#A8BCCC"/>
+      <path d="M100 118 L102 125 L109 127 L102 129 L100 136 L98 129 L91 127 L98 125 Z" fill="#A8BCCC"/>
+      <path d="M129 109 L131 116 L138 118 L131 120 L129 127 L127 120 L120 118 L127 116 Z" fill="#A8BCCC"/>
     </svg>
     <div class="nav-brand">
       <span class="nav-name">BURUJ SECURITY</span>
@@ -432,15 +451,14 @@
   <div class="hero-glow"></div>
   <div class="hero-grid"></div>
 
-  <svg class="hero-watermark" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="8"  y="2" width="16" height="16" rx="1.5" stroke="white" stroke-width="3.5" fill="none"/>
-    <rect x="30" y="2" width="16" height="16" rx="1.5" stroke="white" stroke-width="3.5" fill="none"/>
-    <rect x="54" y="2" width="16" height="16" rx="1.5" stroke="white" stroke-width="3.5" fill="none"/>
-    <rect x="76" y="2" width="16" height="16" rx="1.5" stroke="white" stroke-width="3.5" fill="none"/>
-    <path d="M8 18 L92 18 L92 78 L50 115 L8 78 Z" stroke="white" stroke-width="3.5" fill="none"/>
-    <path d="M50 36 L64 72 L50 60 L36 72 Z" stroke="white" stroke-width="3" fill="none"/>
-    <path d="M29 42 L32 34 L35 42 L43 45 L35 48 L32 56 L29 48 L21 45 Z" fill="white"/>
-    <path d="M65 42 L68 34 L71 42 L79 45 L71 48 L68 56 L65 48 L57 45 Z" fill="white"/>
+  <svg class="hero-watermark" viewBox="0 0 200 215" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 212 L158 178 L175 120 L158 82 L158 56 L140 56 L140 82 L128 82 L128 36 L114 36 L114 56 L106 56 L106 18 L94 18 L94 56 L86 56 L86 36 L72 36 L72 82 L60 82 L60 56 L42 56 L42 82 L25 120 L42 178 Z" stroke="white" stroke-width="7" stroke-linejoin="miter" fill="none"/>
+    <path d="M100 100 L40 162 L40 174 L100 115 L160 174 L160 162 Z" fill="white"/>
+    <rect x="93" y="115" width="14" height="70" fill="white"/>
+    <path d="M100 83 L103 93 L113 96 L103 99 L100 109 L97 99 L87 96 L97 93 Z" fill="white"/>
+    <path d="M71 109 L73 116 L80 118 L73 120 L71 127 L69 120 L62 118 L69 116 Z" fill="white"/>
+    <path d="M100 118 L102 125 L109 127 L102 129 L100 136 L98 129 L91 127 L98 125 Z" fill="white"/>
+    <path d="M129 109 L131 116 L138 118 L131 120 L129 127 L127 120 L120 118 L127 116 Z" fill="white"/>
   </svg>
 
   <div class="hero-content">
@@ -627,17 +645,20 @@
     <div class="about-grid">
       <div class="about-visual reveal">
         <div class="about-shield-wrap">
-          <svg viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 36 L180 36 L180 160 L100 228 L20 160 Z" fill="#0D1B36" opacity="0.06"/>
-            <rect x="20" y="4" width="30" height="30" rx="2" stroke="#0D1B36" stroke-width="5" fill="none"/>
-            <rect x="60" y="4" width="30" height="30" rx="2" stroke="#0D1B36" stroke-width="5" fill="none"/>
-            <rect x="110" y="4" width="30" height="30" rx="2" stroke="#0D1B36" stroke-width="5" fill="none"/>
-            <rect x="150" y="4" width="30" height="30" rx="2" stroke="#0D1B36" stroke-width="5" fill="none"/>
-            <path d="M20 36 L180 36 L180 160 L100 228 L20 160 Z" stroke="#0D1B36" stroke-width="5" fill="none"/>
-            <line x1="20" y1="36" x2="180" y2="36" stroke="#C9A84C" stroke-width="2.5" opacity="0.5"/>
-            <path d="M100 68 L124 136 L100 116 L76 136 Z" stroke="#C9A84C" stroke-width="4.5" fill="none"/>
-            <path d="M56 80 L61 66 L66 80 L80 85 L66 90 L61 104 L56 90 L42 85 Z" fill="#C9A84C" opacity="0.85"/>
-            <path d="M134 80 L139 66 L144 80 L158 85 L144 90 L139 104 L134 90 L120 85 Z" fill="#C9A84C" opacity="0.85"/>
+          <svg viewBox="0 0 200 215" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Shield fill shadow -->
+            <path d="M100 212 L158 178 L175 120 L158 82 L158 56 L140 56 L140 82 L128 82 L128 36 L114 36 L114 56 L106 56 L106 18 L94 18 L94 56 L86 56 L86 36 L72 36 L72 82 L60 82 L60 56 L42 56 L42 82 L25 120 L42 178 Z" fill="#0D1B36" opacity="0.05"/>
+            <!-- Outer shield with battlements -->
+            <path d="M100 212 L158 178 L175 120 L158 82 L158 56 L140 56 L140 82 L128 82 L128 36 L114 36 L114 56 L106 56 L106 18 L94 18 L94 56 L86 56 L86 36 L72 36 L72 82 L60 82 L60 56 L42 56 L42 82 L25 120 L42 178 Z" stroke="#0D1B36" stroke-width="7" stroke-linejoin="miter" fill="white"/>
+            <!-- Upward chevron -->
+            <path d="M100 100 L40 162 L40 174 L100 115 L160 174 L160 162 Z" fill="#0D1B36"/>
+            <rect x="93" y="115" width="14" height="70" fill="#0D1B36"/>
+            <!-- Large sparkle star -->
+            <path d="M100 83 L103 93 L113 96 L103 99 L100 109 L97 99 L87 96 L97 93 Z" fill="url(#sg-a)"/>
+            <!-- 3 small sparkle stars -->
+            <path d="M71 109 L73 116 L80 118 L73 120 L71 127 L69 120 L62 118 L69 116 Z" fill="url(#sg-b)"/>
+            <path d="M100 118 L102 125 L109 127 L102 129 L100 136 L98 129 L91 127 L98 125 Z" fill="url(#sg-b)"/>
+            <path d="M129 109 L131 116 L138 118 L131 120 L129 127 L127 120 L120 118 L127 116 Z" fill="url(#sg-b)"/>
           </svg>
           <div class="est-badge">
             <div class="year">1998</div>
@@ -735,15 +756,14 @@
 <footer>
   <div class="foot-inner">
     <div class="foot-logo">
-      <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="8"  y="2" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="3.5" fill="none"/>
-        <rect x="30" y="2" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="3.5" fill="none"/>
-        <rect x="54" y="2" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="3.5" fill="none"/>
-        <rect x="76" y="2" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="3.5" fill="none"/>
-        <path d="M8 18 L92 18 L92 78 L50 115 L8 78 Z" stroke="currentColor" stroke-width="3.5" fill="none"/>
-        <path d="M50 36 L64 72 L50 60 L36 72 Z" stroke="currentColor" stroke-width="3" fill="none"/>
-        <path d="M29 42 L32 34 L35 42 L43 45 L35 48 L32 56 L29 48 L21 45 Z" fill="currentColor" opacity="0.75"/>
-        <path d="M65 42 L68 34 L71 42 L79 45 L71 48 L68 56 L65 48 L57 45 Z" fill="currentColor" opacity="0.75"/>
+      <svg viewBox="0 0 200 215" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:32px">
+        <path d="M100 212 L158 178 L175 120 L158 82 L158 56 L140 56 L140 82 L128 82 L128 36 L114 36 L114 56 L106 56 L106 18 L94 18 L94 56 L86 56 L86 36 L72 36 L72 82 L60 82 L60 56 L42 56 L42 82 L25 120 L42 178 Z" stroke="currentColor" stroke-width="7" stroke-linejoin="miter" fill="none"/>
+        <path d="M100 100 L40 162 L40 174 L100 115 L160 174 L160 162 Z" fill="currentColor"/>
+        <rect x="93" y="115" width="14" height="70" fill="currentColor"/>
+        <path d="M100 83 L103 93 L113 96 L103 99 L100 109 L97 99 L87 96 L97 93 Z" fill="#BDD0DC"/>
+        <path d="M71 109 L73 116 L80 118 L73 120 L71 127 L69 120 L62 118 L69 116 Z" fill="#A8BCCC"/>
+        <path d="M100 118 L102 125 L109 127 L102 129 L100 136 L98 129 L91 127 L98 125 Z" fill="#A8BCCC"/>
+        <path d="M129 109 L131 116 L138 118 L131 120 L129 127 L127 120 L120 118 L127 116 Z" fill="#A8BCCC"/>
       </svg>
       <span>BURUJ SECURITY</span>
     </div>
