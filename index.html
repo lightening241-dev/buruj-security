@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buruj Security | Celestial Guard, Fortified Protection</title>
+  <meta name="description" content="Buruj Security — Professional security services including manned guarding, mobile patrols, event security, and CCTV monitoring. Est. 1998.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #0D1B36;
+      --navy-mid:   #1A2E54;
+      --gold:       #C9A84C;
+      --gold-light: #DDB85A;
+      --white:      #FFFFFF;
+      --off-white:  #F5F7FA;
+      --border:     #DDE2EC;
+      --text:       #0D1B36;
+      --muted:      #5A6478;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ─────────────────────────── */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 2.5rem;
+      height: 72px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.35s, box-shadow 0.35s;
+    }
+    .navbar.scrolled {
+      background: rgba(255,255,255,0.97);
+      box-shadow: 0 1px 0 var(--border);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo-svg { width: 42px; height: 42px; color: #fff; transition: color 0.3s; }
+    .navbar.scrolled .nav-logo-svg { color: var(--navy); }
+    .nav-brand { display: flex; flex-direction: column; line-height: 1.1; }
+    .nav-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.2rem; font-weight: 800; letter-spacing: 0.06em;
+      color: #fff; transition: color 0.3s;
+    }
+    .navbar.scrolled .nav-name { color: var(--navy); }
+    .nav-tag {
+      font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--gold);
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 2rem; list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none; font-size: 0.84rem; font-weight: 500;
+      color: rgba(255,255,255,0.8); transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .navbar.scrolled .nav-links a { color: var(--muted); }
+    .navbar.scrolled .nav-links a:hover { color: var(--navy); }
+    .nav-cta {
+      background: var(--gold) !important; color: var(--navy) !important;
+      padding: 0.5rem 1.25rem; border-radius: 4px;
+      font-weight: 700 !important; font-size: 0.78rem !important;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      transition: background 0.2s, transform 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--gold-light) !important; transform: translateY(-1px); }
+
+    /* ── HERO ───────────────────────────── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center;
+      background: var(--navy); overflow: hidden;
+    }
+    .hero-glow {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 70% at 75% 50%, rgba(201,168,76,0.09) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 50% at 15% 80%, rgba(201,168,76,0.05) 0%, transparent 55%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+    .hero-watermark {
+      position: absolute; right: -4%; top: 50%; transform: translateY(-50%);
+      width: 54%; max-width: 680px; opacity: 0.045; pointer-events: none;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1200px; margin: 0 auto;
+      padding: 9rem 2.5rem 8rem; width: 100%;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: inline-block; width: 30px; height: 2px; background: var(--gold);
+    }
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(3.2rem, 7.5vw, 5.8rem);
+      font-weight: 800; line-height: 0.95;
+      color: #fff; text-transform: uppercase; letter-spacing: 0.02em;
+      margin-bottom: 1.6rem;
+    }
+    .hero h1 .gold { color: var(--gold); }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(255,255,255,0.62);
+      max-width: 500px; margin-bottom: 2.5rem; line-height: 1.75;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold); color: var(--navy);
+      text-decoration: none; padding: 0.9rem 2rem;
+      border-radius: 4px; font-weight: 700; font-size: 0.85rem;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-gold:hover {
+      background: var(--gold-light); transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(201,168,76,0.32);
+    }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: #fff;
+      text-decoration: none; padding: 0.9rem 2rem;
+      border-radius: 4px; font-weight: 600; font-size: 0.85rem;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      border: 1.5px solid rgba(255,255,255,0.28);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.07); }
+
+    .hero-bar {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      background: rgba(255,255,255,0.045);
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .hero-stat {
+      padding: 1.4rem 1.5rem; text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.07);
+    }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat .n {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.9rem; font-weight: 800; color: var(--gold); line-height: 1;
+    }
+    .hero-stat .l {
+      font-size: 0.65rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: rgba(255,255,255,0.44); margin-top: 0.3rem;
+    }
+
+    /* ── SHARED ─────────────────────────── */
+    section { padding: 5.5rem 2.5rem; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .sec-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 0.65rem;
+    }
+    .sec-tag::before {
+      content: ''; display: inline-block; width: 22px; height: 2px; background: var(--gold);
+    }
+    .sec-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
+      text-transform: uppercase; color: var(--navy); line-height: 1.05; margin-bottom: 0.9rem;
+    }
+    .sec-sub { font-size: 0.95rem; color: var(--muted); max-width: 500px; line-height: 1.75; }
+
+    /* ── SERVICES ───────────────────────── */
+    #services { background: var(--off-white); }
+    .services-head {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap; margin-bottom: 3rem;
+    }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1.25rem;
+    }
+    .scard {
+      background: #fff; border: 1px solid var(--border); border-radius: 8px;
+      padding: 1.75rem; position: relative; overflow: hidden;
+      transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+    }
+    .scard::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--gold);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.28s;
+    }
+    .scard:hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(13,27,54,0.1); border-color: transparent; }
+    .scard:hover::after { transform: scaleX(1); }
+    .scard-icon {
+      width: 46px; height: 46px; background: var(--navy); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 1.1rem;
+    }
+    .scard-icon svg { width: 22px; height: 22px; color: var(--gold); }
+    .scard h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+    .scard p { font-size: 0.845rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── WHY US ─────────────────────────── */
+    #why { background: var(--navy); }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .why-grid .sec-title { color: #fff; }
+    .why-grid .sec-sub { color: rgba(255,255,255,0.55); max-width: none; }
+    .why-items { display: flex; flex-direction: column; gap: 1.4rem; margin-top: 1.8rem; }
+    .why-item { display: flex; gap: 1rem; align-items: flex-start; }
+    .why-icon {
+      width: 38px; height: 38px; flex-shrink: 0; border-radius: 50%;
+      background: rgba(201,168,76,0.13); border: 1px solid rgba(201,168,76,0.28);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .why-icon svg { width: 16px; height: 16px; color: var(--gold); }
+    .why-item h4 { font-size: 0.92rem; font-weight: 700; color: #fff; margin-bottom: 0.2rem; }
+    .why-item p { font-size: 0.82rem; color: rgba(255,255,255,0.52); line-height: 1.65; }
+    .why-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .wstat {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px; padding: 2rem 1.5rem; text-align: center;
+    }
+    .wstat .n {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.8rem; font-weight: 800; color: var(--gold); line-height: 1; margin-bottom: 0.4rem;
+    }
+    .wstat .l {
+      font-size: 0.72rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.45);
+    }
+
+    /* ── INDUSTRIES ─────────────────────── */
+    #industries { background: #fff; }
+    .ind-header { text-align: center; max-width: 560px; margin: 0 auto 3rem; }
+    .ind-header .sec-tag { justify-content: center; }
+    .ind-header .sec-sub { max-width: none; }
+    .ind-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem;
+    }
+    .ind-pill {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0.7rem; padding: 1.5rem 1rem;
+      border: 1.5px solid var(--border); border-radius: 12px;
+      text-align: center; cursor: default;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+    .ind-pill:hover {
+      border-color: var(--gold); background: rgba(201,168,76,0.05); transform: translateY(-3px);
+    }
+    .ind-pill svg { width: 26px; height: 26px; color: var(--navy); }
+    .ind-pill span { font-size: 0.76rem; font-weight: 600; color: var(--muted); }
+
+    /* ── ABOUT ──────────────────────────── */
+    #about { background: var(--off-white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .about-visual { position: relative; display: flex; justify-content: center; }
+    .about-shield-wrap {
+      position: relative; width: 100%; max-width: 380px;
+    }
+    .about-shield-wrap svg { width: 100%; }
+    .est-badge {
+      position: absolute; bottom: -1.5rem; right: 0;
+      background: var(--gold); color: var(--navy);
+      padding: 1rem 1.4rem; border-radius: 8px; text-align: center;
+      box-shadow: 0 8px 24px rgba(201,168,76,0.3);
+    }
+    .est-badge .year {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.2rem; font-weight: 800; line-height: 1;
+    }
+    .est-badge .est-label {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; margin-top: 0.2rem;
+    }
+    .about-text p {
+      font-size: 0.93rem; color: var(--muted); line-height: 1.8; margin-bottom: 1rem;
+    }
+    .about-text p:first-of-type { font-size: 1.02rem; color: var(--text); font-weight: 500; }
+    .about-text .btn-navy {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--navy); color: #fff;
+      text-decoration: none; padding: 0.9rem 2rem;
+      border-radius: 4px; font-weight: 700; font-size: 0.85rem;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      margin-top: 1.5rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .about-text .btn-navy:hover { background: var(--navy-mid); transform: translateY(-2px); }
+
+    /* ── CONTACT ────────────────────────── */
+    #contact { background: #fff; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; }
+    .cinfo { display: flex; flex-direction: column; gap: 1.4rem; margin-top: 2rem; }
+    .citem { display: flex; gap: 1rem; align-items: flex-start; }
+    .citem-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: var(--off-white); border: 1px solid var(--border);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    }
+    .citem-icon svg { width: 19px; height: 19px; color: var(--navy); }
+    .citem h4 { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem; }
+    .citem a, .citem p { font-size: 0.92rem; font-weight: 600; color: var(--navy); text-decoration: none; }
+    .citem a:hover { color: var(--gold); }
+
+    .cform { display: flex; flex-direction: column; gap: 1rem; }
+    .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .fgroup { display: flex; flex-direction: column; gap: 0.35rem; }
+    .fgroup label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .fgroup input, .fgroup textarea, .fgroup select {
+      padding: 0.72rem 1rem; border: 1.5px solid var(--border);
+      border-radius: 6px; font-family: 'Inter', sans-serif;
+      font-size: 0.88rem; color: var(--text); background: #fff;
+      transition: border-color 0.2s; outline: none;
+      appearance: none;
+    }
+    .fgroup input:focus, .fgroup textarea:focus, .fgroup select:focus {
+      border-color: var(--navy);
+    }
+    .fgroup textarea { resize: vertical; min-height: 110px; }
+    .btn-submit {
+      background: var(--navy); color: #fff; border: none;
+      padding: 0.9rem 2rem; border-radius: 4px;
+      font-family: 'Inter', sans-serif; font-size: 0.85rem;
+      font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      cursor: pointer; align-self: flex-start;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-submit:hover { background: var(--navy-mid); transform: translateY(-1px); }
+
+    /* ── FOOTER ─────────────────────────── */
+    footer { background: var(--navy); padding: 2.25rem 2.5rem; }
+    .foot-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .foot-logo { display: flex; align-items: center; gap: 10px; }
+    .foot-logo svg { width: 30px; height: 30px; color: var(--gold); }
+    .foot-logo span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 0.95rem; letter-spacing: 0.08em; color: #fff;
+    }
+    .foot-copy { font-size: 0.75rem; color: rgba(255,255,255,0.38); }
+    .foot-links { display: flex; gap: 1.5rem; list-style: none; }
+    .foot-links a {
+      font-size: 0.75rem; color: rgba(255,255,255,0.38);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .foot-links a:hover { color: var(--gold); }
+
+    /* ── REVEAL ─────────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(22px);
+      transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── MOBILE ─────────────────────────── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .why-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .frow { grid-template-columns: 1fr; }
+      .hero-bar { grid-template-columns: repeat(2, 1fr); }
+      .about-visual { padding-bottom: 3rem; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 3.5rem 1.25rem; }
+      .hero-content { padding: 7rem 1.25rem 7rem; }
+      .hero-bar { display: none; }
+      .navbar { padding: 0 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ──────────────────────────────────────────── -->
+<nav class="navbar" id="navbar">
+  <a href="#home" class="nav-logo">
+    <svg class="nav-logo-svg" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8"  y="2" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="3.5" fill="none"/>
+      <rect x="30" y="2" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="3.5" fill="none"/>
+      <rect x="54" y="2" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="3.5" fill="none"/>
+      <rect x="76" y="2" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="3.5" fill="none"/>
+      <path d="M8 18 L92 18 L92 78 L50 115 L8 78 Z" stroke="currentColor" stroke-width="3.5" fill="none"/>
+      <path d="M50 36 L64 72 L50 60 L36 72 Z" stroke="currentColor" stroke-width="3" fill="none"/>
+      <path d="M29 42 L32 34 L35 42 L43 45 L35 48 L32 56 L29 48 L21 45 Z" fill="currentColor" opacity="0.75"/>
+      <path d="M65 42 L68 34 L71 42 L79 45 L71 48 L68 56 L65 48 L57 45 Z" fill="currentColor" opacity="0.75"/>
+    </svg>
+    <div class="nav-brand">
+      <span class="nav-name">BURUJ SECURITY</span>
+      <span class="nav-tag">Celestial Guard, Fortified Protection</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ────────────────────────────────────────────── -->
+<section class="hero" id="home">
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+
+  <svg class="hero-watermark" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="8"  y="2" width="16" height="16" rx="1.5" stroke="white" stroke-width="3.5" fill="none"/>
+    <rect x="30" y="2" width="16" height="16" rx="1.5" stroke="white" stroke-width="3.5" fill="none"/>
+    <rect x="54" y="2" width="16" height="16" rx="1.5" stroke="white" stroke-width="3.5" fill="none"/>
+    <rect x="76" y="2" width="16" height="16" rx="1.5" stroke="white" stroke-width="3.5" fill="none"/>
+    <path d="M8 18 L92 18 L92 78 L50 115 L8 78 Z" stroke="white" stroke-width="3.5" fill="none"/>
+    <path d="M50 36 L64 72 L50 60 L36 72 Z" stroke="white" stroke-width="3" fill="none"/>
+    <path d="M29 42 L32 34 L35 42 L43 45 L35 48 L32 56 L29 48 L21 45 Z" fill="white"/>
+    <path d="M65 42 L68 34 L71 42 L79 45 L71 48 L68 56 L65 48 L57 45 Z" fill="white"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow" id="hero-eyebrow">Est. 1998 &mdash; Licensed &amp; Insured</div>
+    <h1 id="hero-h1">Celestial Guard,<br><span class="gold">Fortified</span><br>Protection</h1>
+    <p class="hero-sub" id="hero-sub">Australia's trusted security partner. Professional security services for businesses, events, and communities &mdash; 24 hours a day, 7 days a week.</p>
+    <div class="hero-btns" id="hero-btns">
+      <a href="#contact" class="btn-gold">Get a Free Quote</a>
+      <a href="#services" class="btn-ghost">Our Services</a>
+    </div>
+  </div>
+
+  <div class="hero-bar">
+    <div class="hero-stat"><div class="n">25+</div><div class="l">Years in Operation</div></div>
+    <div class="hero-stat"><div class="n">500+</div><div class="l">Clients Protected</div></div>
+    <div class="hero-stat"><div class="n">24/7</div><div class="l">Operations Centre</div></div>
+    <div class="hero-stat"><div class="n">100%</div><div class="l">Licensed Personnel</div></div>
+  </div>
+</section>
+
+<!-- ── SERVICES ─────────────────────────────────────────── -->
+<section id="services">
+  <div class="container">
+    <div class="services-head">
+      <div>
+        <div class="sec-tag reveal">What We Do</div>
+        <h2 class="sec-title reveal">Comprehensive<br>Security Solutions</h2>
+      </div>
+      <p class="sec-sub reveal">From on-site guards to advanced surveillance, we cover every aspect of your protection needs.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="scard reveal">
+        <div class="scard-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Manned Guarding</h3>
+        <p>Licensed security officers deployed at your premises to deter threats, control access, and provide a visible security presence around the clock.</p>
+      </div>
+
+      <div class="scard reveal">
+        <div class="scard-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h3>Mobile Patrols</h3>
+        <p>Regular and randomised patrols by marked security vehicles, providing visible deterrence and rapid incident response across your sites.</p>
+      </div>
+
+      <div class="scard reveal">
+        <div class="scard-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3>CCTV &amp; Monitoring</h3>
+        <p>Advanced CCTV installations with 24/7 remote monitoring — real-time incident detection, recording, and immediate response coordination.</p>
+      </div>
+
+      <div class="scard reveal">
+        <div class="scard-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Event Security</h3>
+        <p>Crowd management and security for concerts, sporting events, corporate functions, and private gatherings of any scale.</p>
+      </div>
+
+      <div class="scard reveal">
+        <div class="scard-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h3>Access Control</h3>
+        <p>Comprehensive access management including electronic keycards, biometric systems, and professional security gate operations.</p>
+      </div>
+
+      <div class="scard reveal">
+        <div class="scard-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Residential Security</h3>
+        <p>Protecting homes and residential communities with patrol services, concierge security, and rapid emergency response.</p>
+      </div>
+
+      <div class="scard reveal">
+        <div class="scard-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <h3>Corporate Security</h3>
+        <p>Tailored strategies for office buildings, corporate campuses, and business assets — including executive protection options.</p>
+      </div>
+
+      <div class="scard reveal">
+        <div class="scard-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
+        <h3>Loss Prevention</h3>
+        <p>Retail security specialists minimising theft and shrinkage through plainclothes officers, CCTV monitoring, and floor presence.</p>
+      </div>
+
+      <div class="scard reveal">
+        <div class="scard-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        </div>
+        <h3>Construction Security</h3>
+        <p>Protecting construction sites from theft, vandalism, and unauthorised access — day and night coverage, 7 days a week.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY US ─────────────────────────────────────────── -->
+<section id="why">
+  <div class="container">
+    <div class="why-grid">
+      <div>
+        <div class="sec-tag reveal">Why Choose Buruj</div>
+        <h2 class="sec-title reveal">Security You Can<br>Rely On</h2>
+        <p class="sec-sub reveal">With over 25 years protecting Australian businesses and communities, we bring unmatched expertise, reliability, and professionalism to every engagement.</p>
+        <div class="why-items">
+          <div class="why-item reveal">
+            <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div>
+              <h4>Fully Licensed &amp; Insured</h4>
+              <p>All personnel hold current Security Licences with full public liability and workers compensation coverage.</p>
+            </div>
+          </div>
+          <div class="why-item reveal">
+            <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div>
+              <h4>Rapid Response</h4>
+              <p>Our 24/7 operations centre ensures fast, coordinated responses to any security incident — day or night.</p>
+            </div>
+          </div>
+          <div class="why-item reveal">
+            <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div>
+              <h4>Tailored Solutions</h4>
+              <p>Every security plan is custom-designed to your specific environment, risk profile, and budget.</p>
+            </div>
+          </div>
+          <div class="why-item reveal">
+            <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div>
+              <h4>Proven Track Record</h4>
+              <p>Since 1998, we've built long-term relationships with clients across retail, corporate, construction, and government.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="why-stats">
+        <div class="wstat reveal"><div class="n">25<span style="font-size:1.8rem">+</span></div><div class="l">Years Experience</div></div>
+        <div class="wstat reveal"><div class="n">500<span style="font-size:1.8rem">+</span></div><div class="l">Clients Served</div></div>
+        <div class="wstat reveal"><div class="n" style="font-size:2rem">24/7</div><div class="l">Operations Centre</div></div>
+        <div class="wstat reveal"><div class="n">100<span style="font-size:1.8rem">%</span></div><div class="l">Licensed Personnel</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── INDUSTRIES ─────────────────────────────────────── -->
+<section id="industries">
+  <div class="container">
+    <div class="ind-header">
+      <div class="sec-tag reveal">Industries</div>
+      <h2 class="sec-title reveal">Sectors We Protect</h2>
+      <p class="sec-sub reveal">Our expertise spans every major industry — from retail floors to government facilities.</p>
+    </div>
+    <div class="ind-grid">
+      <div class="ind-pill reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span>Retail</span></div>
+      <div class="ind-pill reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Corporate</span></div>
+      <div class="ind-pill reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Residential</span></div>
+      <div class="ind-pill reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><span>Construction</span></div>
+      <div class="ind-pill reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Events</span></div>
+      <div class="ind-pill reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span>Healthcare</span></div>
+      <div class="ind-pill reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg><span>Hospitality</span></div>
+      <div class="ind-pill reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg><span>Industrial</span></div>
+      <div class="ind-pill reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span>Government</span></div>
+      <div class="ind-pill reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Education</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ──────────────────────────────────────────── -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-shield-wrap">
+          <svg viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 36 L180 36 L180 160 L100 228 L20 160 Z" fill="#0D1B36" opacity="0.06"/>
+            <rect x="20" y="4" width="30" height="30" rx="2" stroke="#0D1B36" stroke-width="5" fill="none"/>
+            <rect x="60" y="4" width="30" height="30" rx="2" stroke="#0D1B36" stroke-width="5" fill="none"/>
+            <rect x="110" y="4" width="30" height="30" rx="2" stroke="#0D1B36" stroke-width="5" fill="none"/>
+            <rect x="150" y="4" width="30" height="30" rx="2" stroke="#0D1B36" stroke-width="5" fill="none"/>
+            <path d="M20 36 L180 36 L180 160 L100 228 L20 160 Z" stroke="#0D1B36" stroke-width="5" fill="none"/>
+            <line x1="20" y1="36" x2="180" y2="36" stroke="#C9A84C" stroke-width="2.5" opacity="0.5"/>
+            <path d="M100 68 L124 136 L100 116 L76 136 Z" stroke="#C9A84C" stroke-width="4.5" fill="none"/>
+            <path d="M56 80 L61 66 L66 80 L80 85 L66 90 L61 104 L56 90 L42 85 Z" fill="#C9A84C" opacity="0.85"/>
+            <path d="M134 80 L139 66 L144 80 L158 85 L144 90 L139 104 L134 90 L120 85 Z" fill="#C9A84C" opacity="0.85"/>
+          </svg>
+          <div class="est-badge">
+            <div class="year">1998</div>
+            <div class="est-label">Established</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-text">
+        <div class="sec-tag reveal">About Us</div>
+        <h2 class="sec-title reveal">Protecting What<br>Matters Most</h2>
+        <p class="reveal">Buruj Security was founded in 1998 with a single mission: to provide world-class security services that give our clients genuine peace of mind.</p>
+        <p class="reveal">Over more than two decades, we have grown into one of Australia's most trusted security companies — delivering comprehensive protection across every sector, from small businesses to large-scale events and corporate campuses.</p>
+        <p class="reveal">Our name, Buruj — meaning "towers" or "fortresses" — reflects our commitment to building impenetrable layers of protection around everything our clients hold dear. Every guard we deploy, every patrol we run, and every system we install is backed by our founding promise of excellence.</p>
+        <a href="#contact" class="btn-navy reveal">Work With Us &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ────────────────────────────────────────── -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <div class="sec-tag reveal">Contact</div>
+        <h2 class="sec-title reveal">Get a Free<br>Security Quote</h2>
+        <p class="sec-sub reveal">Tell us about your security needs and we'll respond within 24 hours with a tailored solution.</p>
+        <div class="cinfo">
+          <div class="citem reveal">
+            <div class="citem-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.61 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.7a16 16 0 0 0 6.29 6.29l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <h4>Phone</h4>
+              <a href="tel:0422843643">0422 843 643</a>
+            </div>
+          </div>
+          <div class="citem reveal">
+            <div class="citem-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <h4>Email</h4>
+              <a href="mailto:info@burujsecurity.com.au">info@burujsecurity.com.au</a>
+            </div>
+          </div>
+          <div class="citem reveal">
+            <div class="citem-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <h4>Availability</h4>
+              <p>24 hours a day, 7 days a week</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form class="cform reveal" onsubmit="handleSubmit(event)">
+        <div class="frow">
+          <div class="fgroup"><label>First Name</label><input type="text" placeholder="John" required></div>
+          <div class="fgroup"><label>Last Name</label><input type="text" placeholder="Smith" required></div>
+        </div>
+        <div class="frow">
+          <div class="fgroup"><label>Phone</label><input type="tel" placeholder="04XX XXX XXX"></div>
+          <div class="fgroup"><label>Email</label><input type="email" placeholder="john@example.com" required></div>
+        </div>
+        <div class="fgroup">
+          <label>Service Required</label>
+          <select>
+            <option value="">Select a service...</option>
+            <option>Manned Guarding</option>
+            <option>Mobile Patrols</option>
+            <option>CCTV &amp; Monitoring</option>
+            <option>Event Security</option>
+            <option>Access Control</option>
+            <option>Residential Security</option>
+            <option>Corporate Security</option>
+            <option>Loss Prevention</option>
+            <option>Construction Security</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="fgroup">
+          <label>Message</label>
+          <textarea placeholder="Tell us about your security requirements..."></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Enquiry &rarr;</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────── -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-logo">
+      <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8"  y="2" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="3.5" fill="none"/>
+        <rect x="30" y="2" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="3.5" fill="none"/>
+        <rect x="54" y="2" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="3.5" fill="none"/>
+        <rect x="76" y="2" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="3.5" fill="none"/>
+        <path d="M8 18 L92 18 L92 78 L50 115 L8 78 Z" stroke="currentColor" stroke-width="3.5" fill="none"/>
+        <path d="M50 36 L64 72 L50 60 L36 72 Z" stroke="currentColor" stroke-width="3" fill="none"/>
+        <path d="M29 42 L32 34 L35 42 L43 45 L35 48 L32 56 L29 48 L21 45 Z" fill="currentColor" opacity="0.75"/>
+        <path d="M65 42 L68 34 L71 42 L79 45 L71 48 L68 56 L65 48 L57 45 Z" fill="currentColor" opacity="0.75"/>
+      </svg>
+      <span>BURUJ SECURITY</span>
+    </div>
+    <div class="foot-copy">&copy; 2025 Buruj Security &middot; Celestial Guard, Fortified Protection</div>
+    <ul class="foot-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+
+  // Hero entrance
+  window.addEventListener('load', () => {
+    const eyebrow = document.getElementById('hero-eyebrow');
+    const h1 = document.getElementById('hero-h1');
+    const sub = document.getElementById('hero-sub');
+    const btns = document.getElementById('hero-btns');
+    [eyebrow, h1, sub, btns].forEach((el, i) => {
+      if (!el) return;
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(28px)';
+      el.style.transition = 'opacity 0.75s cubic-bezier(0.22,1,0.36,1), transform 0.75s cubic-bezier(0.22,1,0.36,1)';
+      setTimeout(() => {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }, 200 + i * 140);
+    });
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+  // Stagger siblings
+  revealEls.forEach((el, i) => {
+    const siblings = el.parentElement.querySelectorAll('.reveal');
+    let delay = 0;
+    siblings.forEach((s, j) => { if (s === el) delay = j * 70; });
+    el.style.transitionDelay = delay + 'ms';
+    revealObs.observe(el);
+  });
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-submit');
+    btn.textContent = "Sent! We'll be in touch shortly.";
+    btn.style.background = '#1e6b24';
+    btn.disabled = true;
+  }
+</script>
+
+</body>
+</html>
