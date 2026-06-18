@@ -494,9 +494,9 @@
       </div>
 
       <div>
-        <form class="aform reveal" name="careers" netlify netlify-honeypot="bot-field" onsubmit="handleSubmit(event)">
+        <form class="aform reveal" name="careers" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onsubmit="handleSubmit(event)">
           <input type="hidden" name="form-name" value="careers">
-          <input type="hidden" name="bot-field" style="display:none">
+          <p style="display:none"><input name="bot-field"></p>
           <h3>Application Form</h3>
           <p>All fields marked * are required.</p>
           <div class="frow">
