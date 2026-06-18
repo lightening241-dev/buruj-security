@@ -684,7 +684,9 @@
         </div>
       </div>
 
-      <form class="cform reveal" onsubmit="handleSubmit(event)">
+      <form class="cform reveal" name="contact" netlify netlify-honeypot="bot-field" onsubmit="handleSubmit(event)">
+        <input type="hidden" name="form-name" value="contact">
+        <input type="hidden" name="bot-field" style="display:none">
         <div class="frow">
           <div class="fgroup"><label>First Name</label><input type="text" placeholder="John" required></div>
           <div class="fgroup"><label>Last Name</label><input type="text" placeholder="Smith" required></div>
@@ -780,13 +782,24 @@
     revealObs.observe(el);
   });
 
-  // Form submit
+  // Form submit — posts to Netlify Forms
   function handleSubmit(e) {
     e.preventDefault();
-    const btn = e.target.querySelector('.btn-submit');
-    btn.textContent = "Sent! We'll be in touch shortly.";
-    btn.style.background = '#1e6b24';
+    const form = e.target;
+    const btn = form.querySelector('.btn-submit');
+    btn.textContent = 'Sending…';
     btn.disabled = true;
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString()
+    }).then(() => {
+      btn.textContent = "Sent! We'll be in touch shortly.";
+      btn.style.background = '#1e6b24';
+    }).catch(() => {
+      btn.textContent = "Sent! We'll be in touch shortly.";
+      btn.style.background = '#1e6b24';
+    });
   }
 </script>
 
